@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import Navbar from './components/Navbar/Navbar'
+import Card from './components/Card/Card'
 import './App.css';
 
 function App() {
+  const [username, setUsername] = useState('')
+  const [user, setUser] = useState('')
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        {user ? (
+          <>
+<Navbar/>
+<Card/>
+<span className='username'>{user}</span>
+          </>
+        ):(
+        <div className='login'>
+          <input type='text' placeholder='Username here' onChange={(e) => { setUsername(e.target.value) }} />
+          <button onClick={() => { setUser(username) }}>Login</button>
+        </div>
+         )}
+      </div>
     </div>
   );
 }
